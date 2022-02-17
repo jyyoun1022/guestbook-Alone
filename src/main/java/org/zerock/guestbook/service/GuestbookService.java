@@ -12,6 +12,9 @@ public interface GuestbookService {
 
     PageResultDTO<GuestbookDTO,Guestbook> getList(PageRequestDTO requestDTO);
 
+    /**
+     *서비스는 파라미터를 DTO타입으로 받기 때문에 Entity로 변환을 해줘야합니다.
+     */
     default Guestbook dtoToEntity(GuestbookDTO dto){
         Guestbook guestbook = Guestbook.builder()
                 .gno(dto.getGno())
@@ -21,6 +24,8 @@ public interface GuestbookService {
                 .build();
         return guestbook;
     }
+
+
     default GuestbookDTO entityToDto(Guestbook entity){
         GuestbookDTO dto = GuestbookDTO.builder()
                 .gno(entity.getGno())

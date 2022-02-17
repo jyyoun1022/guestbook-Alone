@@ -22,14 +22,13 @@ public class GuestbookServiceImpl implements GuestbookService{
 
 private final GuestBookRepository repository;
 
+    /**
+     *등록을 하려면 레포지토리에 해야 하기때문에 Entity로 넣어줘야합니다.
+     */
     @Override
     public Long register(GuestbookDTO dto) {
-        log.info("DTO.........");
-        log.info(dto);
 
         Guestbook entity = dtoToEntity(dto);
-
-        log.info(entity);
 
         repository.save(entity);
 

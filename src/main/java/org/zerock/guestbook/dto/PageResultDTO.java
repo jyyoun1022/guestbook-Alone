@@ -11,9 +11,17 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * JpaRepository에서 페이지 처리 결과를 Page타입으로 반환해주면 Service에서 이를 처리하기 위해 만들어진 클래스 입니다.
+ * Page의 객체들을 DTO 객체로 변환해 자료구조로 담아줍니다.
+ * 화면 출력에 필요한 페이지 정보들을 구성해줍니다.
+ */
 @Data
 public class PageResultDTO<DTO,EN> {
 
+    /**
+     * Page를 화면에서 사용하기 쉬운 DTO 리스트 등으로 변환해준다.
+     */
     private List<DTO> dtoList;  //DTO 리스트
 
     private int totalPage;  //총 페이지 번호
@@ -39,13 +47,14 @@ public class PageResultDTO<DTO,EN> {
     }
 
     private void makePageList(Pageable pageable) {
-        this.page = pageable.getPageNumber() + 1;
+        this.page = pageable.getPageNumber() + 1;   //0부터시작하므로 1을 더해줍니다.
         this.size = pageable.getPageSize();
 
         /**
          * temp end page
+         * 끝번호를 미리 계산하는 이유 : 시작번호를 계산하는데 수월하게 하기위해
          */
-        int tempEnd = (int) (Math.ceil(page / 10)) * 10;
+        int tempEnd = (int)(Math.ceil(page / 10.00)) * 10;
 
         start = tempEnd - 9;
 
