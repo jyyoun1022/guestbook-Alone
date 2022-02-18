@@ -12,6 +12,14 @@ public interface GuestbookService {
 
     PageResultDTO<GuestbookDTO,Guestbook> getList(PageRequestDTO requestDTO);
 
+    GuestbookDTO read(Long gno);
+
+    void remove(Long gno);
+
+    void modify(GuestbookDTO dto);
+
+
+
     /**
      *서비스는 파라미터를 DTO타입으로 받기 때문에 Entity로 변환을 해줘야합니다.
      */

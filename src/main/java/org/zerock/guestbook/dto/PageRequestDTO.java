@@ -29,6 +29,8 @@ public class PageRequestDTO {
 
     private int page;
     private int size;
+    private  String type;
+    private String keyword;
 
     /**
      * 페이지 번호 등은 기본값을 가지는 것이 좋기 때문에 1과 10이라는 값을 지정합니다.
