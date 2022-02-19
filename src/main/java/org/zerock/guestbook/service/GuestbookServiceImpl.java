@@ -49,6 +49,7 @@ private final GuestBookRepository repository;
         Page<Guestbook> result = repository.findAll(booleanBuilder,pageable); // Querydsl 사용
 
         Function<Guestbook,GuestbookDTO> fn = (entity -> entityToDto(entity));
+
         return new PageResultDTO<>(result,fn);
     }
 
@@ -79,6 +80,7 @@ private final GuestBookRepository repository;
             repository.save(entity);
         }
     }
+
     private BooleanBuilder getSearch(PageRequestDTO requestDTO){
 
         String type = requestDTO.getType();
