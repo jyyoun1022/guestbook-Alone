@@ -23,4 +23,6 @@ abstract class BaseEntity {
     @LastModifiedDate   //조회한 Entity값을 변경할 때 시간을 자동저장
     @Column(name = "modDate")
     private LocalDateTime modDate;
+
+
 }

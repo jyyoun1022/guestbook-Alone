@@ -34,6 +34,7 @@ public class GuestbookController {
         log.info("list........"+pageRequestDTO);
 
         model.addAttribute("result",service.getList(pageRequestDTO));
+
     }
 
     /**
@@ -47,7 +48,7 @@ public class GuestbookController {
     /**
      * 처리 후 목록 페이지로 이동합니다.
      * 1. RedirectAttributes() : 단 한번만 화면에서 "msg"라는 이름의 변수를 사용할 수 있도록 처리해줍니다.
-     * 2. addFlashAttribute() : 단 한ㅂ너만 데이터를 전달하는 용도로 사용합니다.
+     * 2. addFlashAttribute() : 단 한번만 데이터를 전달하는 용도로 사용합니다.
      */
     @PostMapping("/register")
     public String registerPost(GuestbookDTO dto, RedirectAttributes redirectAttributes){
@@ -83,9 +84,8 @@ public class GuestbookController {
     }
     @PostMapping("/modify")
     public String modify(GuestbookDTO dto,
-                         @ModelAttribute("requestDTO") PageRequestDTO requestDTO,
+                         PageRequestDTO requestDTO,
                          RedirectAttributes redirectAttributes){
-
         service.modify(dto);
 
         redirectAttributes.addAttribute("page",requestDTO.getPage());
