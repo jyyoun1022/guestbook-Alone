@@ -57,5 +57,29 @@ public class GuestbookServiceTests {
         System.out.println("======================================");
         resultDTO.getPageList().forEach(i -> System.out.println(i));
     }
+    @Test
+    void testSearch(){
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .page(1)
+                .size(10)
+                .type("c")  //검색조건 t,c,w,tc,tcw
+                .keyword("C")  //검색 키워드
+                .build();
+
+        PageResultDTO<GuestbookDTO, Guestbook> resultDTO = service.getList(pageRequestDTO);
+
+        System.out.println("PREV: "+resultDTO.isPrev());
+        System.out.println("NEXT: "+resultDTO.isNext());
+        System.out.println("TOTAL: "+resultDTO.getTotalPage());
+
+        System.out.println("================================");
+
+        for(GuestbookDTO guestbookDTO : resultDTO.getDtoList()){
+            System.out.println(guestbookDTO);
+        }
+
+        System.out.println("===============================");
+        resultDTO.getPageList().forEach(i-> System.out.println(i));
+    }
 
 }
