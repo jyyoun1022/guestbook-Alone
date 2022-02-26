@@ -46,15 +46,15 @@
         <button type="button" class="btn btn-danger removeBtn">Remove</button>
 
         <script th:inline="javascript">
+             var actionForm=$("form");
 
-            var actionForm=$("form");
+                        $(".removeBtn").click(function(){
 
-            $(".removeBtn").click(function(){
+                            actionForm.attr("action","/guestbook/remove").attr("method","post");
 
-                actionForm.attr("action","/guestbook/remove").attr("method","post");
+                            actionForm.submit();
+                            })
 
-                actionForm.submit();
-                });
 
             $(".modifyBtn").click(function() {
 

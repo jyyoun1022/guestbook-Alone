@@ -81,7 +81,10 @@ private final GuestBookRepository repository;
         }
     }
 
-    private BooleanBuilder getSearch(PageRequestDTO requestDTO){
+    /**
+     * Querydsl 처리
+     */
+    private BooleanBuilder getSearch(PageRequestDTO requestDTO) {
 
         String type = requestDTO.getType();
 
@@ -91,11 +94,13 @@ private final GuestBookRepository repository;
 
         String keyword = requestDTO.getKeyword();
 
-        BooleanExpression expression = qGuestbook.gno.gt(0L);
+        BooleanExpression expression = qGuestbook.gno.gt(0L);   //gno > 0 조건만 생성
 
-        if(type == null || type.trim().length() ==0){
-            return booleanBuilder;
-        }
+        booleanBuilder.and(expression);
+
+        if(type==null || type.trim().length()==0){return booleanBuilder;    //검색조건이 없는 경우
+    }
+
 
         // 검색 조건 작성
         // PageRequestDTO 를 파라미터로 받아 검색조건이 있는 경우 conditionBuilder 변수를 생성해 각 검색조건을 or로 연결해 처리한다
