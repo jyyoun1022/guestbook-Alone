@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * JpaRepository에서 페이지 처리 결과를 Page타입으로 반환해주면 Service에서 이를 처리하기 위해 만들어진 클래스 입니다.
@@ -39,6 +40,9 @@ public class PageResultDTO<DTO,EN> {
     public PageResultDTO(Page<EN>result , Function<EN,DTO>fn) {
 
         dtoList = result.stream().map(fn).collect(Collectors.toList());
+
+//        Stream<EN> enStream = result.get();
+//        enStream.map(fn).collect(Collectors.toList());
 
         totalPage = result.getTotalPages();
 

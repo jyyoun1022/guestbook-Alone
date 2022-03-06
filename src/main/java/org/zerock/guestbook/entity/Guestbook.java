@@ -27,6 +27,7 @@ public class Guestbook extends BaseEntity{
     @Column(length = 50, nullable = false)
     private String writer;
 
+
     public void changeTitle(String title){
         this.title = title;
     }
